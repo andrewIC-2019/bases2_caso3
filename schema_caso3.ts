@@ -18,8 +18,9 @@ Justificación:
 //Se llama a mongoose desde nodejs
 const mongoose = require('mongoose');
 
-//Schema model de Sistema de Subastas
-const articles = new mongoose.Schema( 
+
+//Schema model de Data Shine Census
+const schema = new Schema( 
 {
     title: String,                              // title of the auction
     name: String,                               // name of the product
@@ -49,19 +50,11 @@ const articles = new mongoose.Schema(
     closeInfo: {
                     Reason: String,             //E.x. User_close, Time_expired
                     Posttime: Date              
-                },
-    bids_log : [{
-                    posttime : Date, 
-                    bidAmount : Number,
-                    currency : String,
-                    username : String,
-                    profilePhoto : String,
-                    email : String
-                }]
+                }
 });
 
 // Hacemos el modelo, utilizando el schema
-const as_articles = mongoose.model('as_articles', articles);
+const as_articles = mongoose.model('as_articles', schema);
 
 /*
 Examples of catalogs

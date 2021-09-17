@@ -1,0 +1,57 @@
+-------------
+BASESERVICE
+-------------
+
+common
+    ->  library:                    // aquí puedo guardar algunas clases, que sean requeridos en distintas partes
+            -article.ts:            // Objeto que es de uso común
+    ->  logger
+            -logger.ts              // logs/salidas en consola, con formato personalizado
+    -   index.ts:                   // es utilizado para facilitar los exports, de tal manera que cuando los necesite, 
+                                    // hago un export/import de la carpeta y no de cada archivo
+
+controllers:                        // se recurre desde el router,contiene la lógica necesaria para luego ir a los accesores de datos
+    -   articlescontroller.ts:      // cuenta con un patrón singelton, genero el acceso de datos   
+    -   index.ts:                   // para el export
+
+node_modules
+    =   "dependencias para el funcionamiento del servidor express"
+
+repositories:                //almacena los accesores de datos, que se llaman desde los controllers
+    -   data_articles.ts:   //plantilla para devolver los datos de mongo
+
+routes
+    -   articlesrouter.ts   // route con utiliza log
+    -   kindness.ts         // route básico, ejemplo de saludo
+    -   routes.ts           // route de routes, designa los /routes, destinoxyz
+
+.eslintrc.json: //herramienta que a gestionar problemas de desarrollo
+
+.gitignore: //indicar a git, que no controle node-modules, y *.js (en este caso)
+
+app.ts: //aplicación de servicio, cofigura express, middleware. Abre una ruta para /api
+
+index.ts:   //inicia el servicio en el puerto 5000, realiza export de app
+
+nodemon.json:   //nodemon monitorea el scipt durante de app en node js
+
+package-lock.json:  //más detalles de dependencias
+
+package.json:   //dependencias e información básica del proyecto
+
+tsconfig.json:  //indica que el directorio es la raíz de un proyecto en TypeScript
+
+tslint.json:    //Contiene reglas básicas
+
+/*
+Nota:
+    Los modelos de mongo, irían al repository.
+
+    Desde el controller yo debería decirle al repository, que guarde algo
+    Para no usar el controller, con lo que debería en el repositorio
+
+    Un repositorio es cualquier cosa que guarde información. Uno desea
+    que la lógica use la información, pero no saber como ni de donde viene
+
+    La lógica del acceso de datos en el controller NO vá, mejor en el repositorio
+*/

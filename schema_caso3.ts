@@ -33,32 +33,20 @@ const articles = new mongoose.Schema(
     isActive: Boolean,                          // Is the Auction running
     inicialPrice: Number,
     currency: String,
-    reserve: Number,                            // Lowest price that the article can be sell,
-                                                // not always is the inicialPrice
+    reserve: Number,                            // Lowest price that the article can be sell, is not always the inicialPrice
     currentMaxBid: Number,
-    maxBidUserInfo: {
-                        username: String,
-                        profilePhoto: String,
-                        email: String
-                    },
-    sellerInfo: {
-                    username: String,
-                    profilePhoto: String,
-                    email: String
-                },
-    closeInfo: {
-                    Reason: String,             //E.x. User_close, Time_expired
-                    Posttime: Date              
-                },
-    bids_log : [{
-                    posttime : Date, 
-                    bidAmount : Number,
-                    currency : String,
-                    username : String,
-                    profilePhoto : String,
-                    email : String
-                }]
+    maxBidUserInfo: {username: String, profilePhoto: String, email: String},
+    sellerInfo: {username: String, profilePhoto: String, email: String},
+    closeInfo: {Reason: String, Posttime: Date},//E.x. User_close, Time_expired
+    bids_log : [{posttime : Date, bidAmount : Number, currency : String, username : String, profilePhoto : String, email : String}]
 });
+
+//Transaction para agregar artículo
+
+//Dar de baja un articulo por vencimiento o por el vendedor YO
+
+//Ofertar
+
 
 // Hacemos el modelo, utilizando el schema
 const as_articles = mongoose.model('as_articles', articles);

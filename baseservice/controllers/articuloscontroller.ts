@@ -40,5 +40,11 @@ export class ArticulosController {
         const mongo = new articulos_data();
         return mongo.close(user, auctionTitle, reasonType);
     }
+
+    public bid(title:String, amount:Number, username:String, currency:String, 
+               profilePhoto:String, email:String) : Promise<any> {
+        const mongo = new articulos_data();
+        return mongo.bid(title, amount, username, currency, profilePhoto, email);
+    }
     
 }

@@ -53,4 +53,22 @@ app.post("/closeOwner", (req, res, next) => {
     });
 });
 
+app.post("/bid", (req, res, next) => {
+    ArticulosController.getInstance().bid(req.body.title, req.body.amount, req.body.username,
+                                          req.body.currency, req.body.profilePhoto, req.body.email)
+    .then((data)=>{
+        if(data != null){
+            res.json({"Message": "Bid accepted!"});
+        }
+        else{
+            res.json({"Message": "Bid denied!"});
+        }
+        
+    })
+    .catch((err)=>{
+        log.error(err);
+        res.json({"Message": "Error!"});
+    });
+});
+
 export { app as articulosrouter };

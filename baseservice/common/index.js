@@ -8,6 +8,9 @@ var __createBinding = (this && this.__createBinding) || (Object.create ? (functi
 }));
 exports.__esModule = true;
 exports.Article = exports.Logger = void 0;
+//index para los imports, recomendado, para que queden "bonitos", y no archivo
+//por archivo
+//publico lo que hay en el folder
 var logger_1 = require("./logger/logger");
 __createBinding(exports, logger_1, "Logger");
 var article_1 = require("./library/article");

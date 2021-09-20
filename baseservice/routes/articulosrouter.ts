@@ -34,7 +34,18 @@ app.post("/add", (req, res, next) => {
 app.post("/closeTime", (req, res, next) => {
     ArticulosController.getInstance().close(req.body.username, req.body.title, "Time_expired")
     .then((data)=>{
-        res.json({"Message": "Auction closed- Time expired!"});
+        res.json({"Message": "Auction closed. Time expired!"});
+    })
+    .catch((err)=>{
+        log.error(err);
+        return "";
+    });
+});
+
+app.post("/closeOwner", (req, res, next) => {
+    ArticulosController.getInstance().close(req.body.username, req.body.title, "User_close")
+    .then((data)=>{
+        res.json({"Message": "Auction closed. Owner closed it!"});
     })
     .catch((err)=>{
         log.error(err);

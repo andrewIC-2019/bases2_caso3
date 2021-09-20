@@ -1,6 +1,11 @@
 "use strict";
 exports.__esModule = true;
 exports.articles_data = void 0;
+/*
+VENGO DE LOS CONTROLADORES
+*/
+//aqui vendria lo de mongo
+//lo basico para devolver datos
 var articles_data = /** @class */ (function () {
     function articles_data() {
     }

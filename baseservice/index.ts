@@ -10,11 +10,17 @@ INICIO DEL SERVICIO
 //lo arranca
 const port = 5000;
 const logger = new Logger();
+const mongoose = require('mongoose');
 
 App.set('port', port);
 const server = http.createServer(App);
 server.listen(port);
 
+mongoose.connect('mongodb://localhost:27017/subastas', {
+    useNewUrlParser : true
+})
+    .then(() => console.log('Conectado a la base de datos'))
+    .catch((err: any) => console.log(err));
 
 server.on('listening', () => {
     const addr = server.address();

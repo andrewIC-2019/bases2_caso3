@@ -1,6 +1,7 @@
 "use strict";
 exports.__esModule = true;
 exports.Logger = void 0;
+//salida de logs, personalizada
 var Logger = /** @class */ (function () {
     function Logger() {
     }

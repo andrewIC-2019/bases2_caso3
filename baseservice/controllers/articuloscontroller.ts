@@ -47,4 +47,27 @@ export class ArticulosController {
         return mongo.bid(title, amount, username, currency, profilePhoto, email);
     }
     
+    //      nuevo
+    //-------------------
+
+    //por rango de precios
+    public listPriceRange(minValue: String, maxValue: String) : Promise<any>
+    {
+        const mongo = new articulos_data();
+        return mongo.listPriceRange(minValue, maxValue);
+    }    
+
+    //por rango de annios
+    public listYearRange(minValue: String, maxValue: String) : Promise<any>
+    {
+        const mongo = new articulos_data();
+        return mongo.listYearRange(minValue, maxValue);
+    }    
+
+    //tiempo restante maximo
+    public listArticlesTime(option: String, value: String) : Promise<any>
+    {
+        const mongo = new articulos_data();
+        return mongo.listByTime(option, value);
+    }
 }

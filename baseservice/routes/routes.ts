@@ -3,6 +3,7 @@ import * as bodyParser from 'body-parser';
 import { Logger } from '../common';
 import {kindnessrouter} from './kindness';
 import {articlesrouter} from './articlesrouter';
+import {articulosrouter} from './articulosrouter';
 
 /*
 LUEGO DE LA APLICACION, CAE AL ENRUTADOR, ME LLEVA A LOS
@@ -33,6 +34,7 @@ class Routes {
     private routes(): void {
         this.express.use('/kind', kindnessrouter);
         this.express.use('/articles', articlesrouter);
+        this.express.use('/articulos', articulosrouter); //************************************************ */
         this.logger.info("Kindness route loaded");
     }
 }

@@ -23,10 +23,10 @@ export class ArticulosController {
         return this.instance;
     }
 
-    public listArticulos() : Promise<any> 
+    public listArticulos(tipo : Number) : Promise<any> 
     {
         const mongo = new articulos_data();
-        return mongo.getAllArticulos();
+        return mongo.getAllArticulos(tipo);
     }
 
     public addArticulo(data : JSON) : Promise<any> 

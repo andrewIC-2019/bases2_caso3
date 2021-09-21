@@ -5,15 +5,31 @@ import { ArticulosController } from '../controllers/articuloscontroller'
 const app = express();
 const log = new Logger();
 
-app.get("/list", (req, res, next) => {
-    ArticulosController.getInstance().listArticulos()
+app.get("/listActive", (req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "X-Requested-With");
+   // next()
+    ArticulosController.getInstance().listArticulos(1)
     .then((data)=>{
         console.log("Retrieved succesfully!");
         res.json(data);
     })
     .catch((err)=>{
         log.error(err);
-        return "";
+        return "Error!";
+    });
+
+});
+
+app.get("/listAll", (req, res, next) => {
+    ArticulosController.getInstance().listArticulos(0)
+    .then((data)=>{
+        console.log("Retrieved succesfully!");
+        res.json(data);
+    })
+    .catch((err)=>{
+        log.error(err);
+        return "Error!";
     });
 
 });
@@ -27,7 +43,7 @@ app.post("/add", (req, res, next) => {
     })
     .catch((err)=>{
         log.error(err);
-        return "";
+        return "Error!";
     });
 });
 
@@ -38,7 +54,7 @@ app.post("/closeTime", (req, res, next) => {
     })
     .catch((err)=>{
         log.error(err);
-        return "";
+        return "Error!";
     });
 });
 
@@ -49,7 +65,7 @@ app.post("/closeOwner", (req, res, next) => {
     })
     .catch((err)=>{
         log.error(err);
-        return "";
+        return "Error!";
     });
 });
 

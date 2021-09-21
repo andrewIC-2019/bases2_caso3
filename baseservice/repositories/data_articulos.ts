@@ -7,9 +7,15 @@ export class articulos_data {
 
     public constructor() { }
 
-    public getAllArticulos() : Promise<any>
+    public getAllArticulos(tipo : Number) : Promise<any>
     {
-        return Articulo.find();
+        if(tipo == 0){
+            return Articulo.find();
+        }
+        else{
+            return Articulo.find({isActive : true});
+        }
+        
     }
 
     public addArticulo(data : JSON) : Promise<any>

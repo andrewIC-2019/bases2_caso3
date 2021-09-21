@@ -87,4 +87,49 @@ app.post("/bid", (req, res, next) => {
     });
 });
 
+//      nuevo
+//-------------------
+
+//por rango de precios
+app.get("/getArticlesRangePrice/:value1/:value2", (req, res, next) => {
+    ArticulosController.getInstance().listPriceRange(
+        req.params.value1, req.params.value2)
+    .then((data)=>{
+        console.log("succesfull!");
+        res.json(data);
+    })
+    .catch((err)=>{
+        log.error(err);
+        res.json({"Message": "Error!"});
+    });
+});
+
+//por rango de annios
+app.get("/getArticlesRangeYears/:value1/:value2", (req, res, next) => {
+    ArticulosController.getInstance().listYearRange(
+        req.params.value1, req.params.value2)
+    .then((data)=>{
+        console.log("succesfull!");
+        res.json(data);
+    })
+    .catch((err)=>{
+        log.error(err);
+        res.json({"Message": "Error!"});
+    });
+});
+
+//tiempo restante maximo
+app.get("/getArticlesByTime/:filterOption/:refValue", (req, res, next) => {
+    ArticulosController.getInstance().listArticlesTime(
+        req.params.filterOption, req.params.refValue)
+    .then((data)=>{
+        console.log("succesfull!");
+        res.json(data);
+    })
+    .catch((err)=>{
+        log.error(err);
+        res.json({"Message": "Error!"});
+    });
+});
+
 export { app as articulosrouter };

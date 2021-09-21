@@ -1,6 +1,7 @@
 import { Error, Promise } from 'mongoose';
 import { Logger } from '../common'
 const Articulo = require('../common/library/articulo')
+const moment = require('moment')
 
 export class articulos_data {
     private log: Logger;
@@ -49,6 +50,55 @@ export class articulos_data {
 
         return Articulo.findOneAndUpdate({ title: auctionTitle, isActive : true, currentMaxBid : {$lt : bidAmount} }, 
             { currentMaxBid : bidAmount,  maxBidUserInfo : newMaxInfo, $push: { bids_log: bid }} );
+    }
+    
+    //      nuevo
+    //-------------------
+
+    //por rango de precios
+    public listPriceRange(minValue: String, maxValue: String) : Promise<any>
+    {
+        const result = Articulo.find({ currentMaxBid: 
+                        {
+                            $gte: minValue,
+                            $lte: maxValue
+                        },
+                        isActive: true
+                    }).sort({ currentMaxBid: 1})        //orden ascendiente
+        return result
+    }
+
+    //por rango de annios
+    public listYearRange(minValue: String, maxValue: String) : Promise<any>
+    {
+        const result = Articulo.find({ manufacteredYear: 
+                        {
+                            $gte: minValue,
+                            $lte: maxValue
+                        },
+                        isActive: true
+                    }).sort({ currentMaxBid: 1})        //orden ascendiente
+        return result
+    }
+
+    //tiempo restante maximo
+    public listByTime(option: String, value: String) : Promise<any>
+    {
+        const now = moment();
+        var maximo = moment();
+        if(option === 'hours'){
+            maximo = now.add(value, 'hours')
+        }else{
+            maximo = now.add(value, 'days')
+        }
+        const result = Articulo.find({ endDate: 
+                        {
+                            $gte: moment(), 
+                            $lte: maximo
+                        },
+                        isActive: true
+                    }).sort({endDate: 1}) 
+        return result;
     }
 
 

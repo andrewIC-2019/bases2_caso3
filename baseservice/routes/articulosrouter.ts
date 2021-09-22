@@ -7,8 +7,6 @@ const log = new Logger();
 
 app.get("/listActive", (req, res, next) => {
     res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "X-Requested-With");
-   // next()
     ArticulosController.getInstance().listArticulos(1)
     .then((data)=>{
         console.log("Retrieved succesfully!");
